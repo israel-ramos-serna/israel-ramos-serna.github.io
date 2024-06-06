@@ -32,13 +32,14 @@ h1 {
 .tab-link {
     background: #1e3d59;
     border: none;
-    padding: 10px 20px;
+    padding: 15px;
     margin: 0 5px;
     cursor: pointer;
     border-radius: 4px;
     color: white;
     transition: background 0.3s;
     flex: 1;
+    font-size: 1.5em;    
 }
 
 .tab-link:hover {
@@ -171,4 +172,5 @@ h1 {
         padding: 5px;
         font-size: 0.9em;
     }
+    
 }

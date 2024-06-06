@@ -4,15 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: 'Morcilla', price: 1.7, quantity: 0 },
             { name: 'Chorizo', price: 1.7, quantity: 0 },
             { name: 'Morro', price: 1.7, quantity: 0 },
-            { name: 'Tortilla', price: 1.7, quantity: 0 },
-            { name: 'Costillas', price: 2, quantity: 0 }
+            { name: 'Tortilla', price: 1.7, quantity: 0 },                        
+            { name: 'Langostinos', price: 2, quantity: 0 },
+            { name: 'Patatas / Chaskis', price: 1, quantity: 0 }
         ],
         bebida: [
-            { name: 'Caña', price: 1.3, quantity: 0 },
+            { name: 'Caña / Caña con Limón', price: 1.3, quantity: 0 },
+            { name: 'Calimocho', price: 1.3, quantity: 0 },
             { name: 'Vino', price: 1.3, quantity: 0 },
-            { name: 'Calimotxo pequeño', price: 1.3, quantity: 0 },
             { name: 'Cachi', price: 4.5, quantity: 0 },
-            { name: 'Refresco', price: 2, quantity: 0 }
+            { name: 'Refresco', price: 1.7, quantity: 0 },
+            { name: 'Mosto', price: 1, quantity: 0 },
+            { name: 'Agua', price: 1, quantity: 0 },
+            { name: 'Café', price: 1, quantity: 0 },
         ]
     };
 
