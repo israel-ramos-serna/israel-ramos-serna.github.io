@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parral 2024</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="logo2.png" />
 </head>
 <body>
     <div class="container">
-        <h1>Peña El Crucero</h1>
+        <div class="branding">
+            <img src="logo2.png" alt="Logo" class="logo">
+            <h2>Peña El Crucero</h2>
+            <img src="logo2.png" alt="Logo" class="logo">
+        </div>
         <div class="tabs">
-            <button class="tab-link tab-link-comida" onclick="openTab('comida')">Comida</button>
-            <button class="tab-link tab-link-bebida" onclick="openTab('bebida')">Bebida</button>
+            <button class="tab-link tab-link-comida tab-selected" onclick="openTab('comida')">COMIDA</button>
+            <button class="tab-link tab-link-bebida" onclick="openTab('bebida')">BEBIDA</button>
         </div>
         <div id="comida" class="tab-content">
             <!-- Productos de comida -->
@@ -19,10 +24,23 @@
         <div id="bebida" class="tab-content" style="display: none;">
             <!-- Productos de bebida -->
         </div>
-        <div class="total">
-            <h2>Total: <span id="total-amount">0.00€</span></h2>
+        <div class="payment-section">
+            <div class="payment-info">
+                <div class="payment-label total-amount"  >Total</div>
+                <div class="payment-amount total-amount" id="total-amount">0.00€</div>
+            </div>
+            <div class="payment-info">
+                <div class="payment-label payment-amount" >Pago</div>
+                <input type="text" class="payment-input payment-amount" id="payment-input" oninput="calculateChange()" pattern="[0-9]*">
+            </div>
+            <div class="payment-info">
+                <div class="payment-label change-amount" >Vueltas:</div>
+                <div class="payment-amount change-amount" id="change-amount">0.00€</div>
+            </div>
             <button id="reset-button" onclick="resetQuantities()">Borrar</button>
         </div>
+
+ 
     </div>
     <script src="script.js"></script>
 </body>

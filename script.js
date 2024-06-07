@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: 'Patatas / Chaskis', price: 1, quantity: 0 }
         ],
         bebida: [
-            { name: 'Caña / Caña con Limón', price: 1.3, quantity: 0 },
-            { name: 'Calimocho', price: 1.3, quantity: 0 },
+            { name: 'Caña/Con Limón', price: 1.3, quantity: 0 },
             { name: 'Vino', price: 1.3, quantity: 0 },
             { name: 'Cachi', price: 4.5, quantity: 0 },
             { name: 'Refresco', price: 1.7, quantity: 0 },
@@ -32,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="product-price">${product.price.toFixed(2)}€</span>
                 </div>
                 <div class="product-controls">
-                    <button class="${category === 'comida' ? 'button-comida' : ''}" onclick="updateQuantity('${category}', ${index}, -1)">-</button>
+                    <button class="${product.quantity > 0 ? 'button-nonzero' : 'button-zero'}" onclick="updateQuantity('${category}', ${index}, -1)">-</button>
                     <input type="number" value="${product.quantity}" onchange="setQuantity('${category}', ${index}, this.value)">
-                    <button class="${category === 'comida' ? 'button-comida' : ''}" onclick="updateQuantity('${category}', ${index}, 1)">+</button>
+                    <button class="${product.quantity > 0 ? 'button-nonzero' : 'button-zero'}" onclick="updateQuantity('${category}', ${index}, 1)">+</button>
                 </div>
             `;
             container.appendChild(productElement);
@@ -63,6 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tab.style.display = 'none';
         });
         document.getElementById(category).style.display = 'block';
+        document.querySelectorAll('.tab-link').forEach(button => {
+            button.classList.remove('tab-selected');
+        });
+        document.querySelector(`.tab-link-${category}`).classList.add('tab-selected');
         renderProducts(category);
     }
 
@@ -74,6 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         document.getElementById('total-amount').textContent = total.toFixed(2) + '€';
+        const totalAmountBottom = document.getElementById('total-amount');
+        if (totalAmountBottom) {
+            totalAmountBottom.textContent = total.toFixed(2) + '€';
+        }
+        if(document.getElementById('payment-input').value != ""){
+            calculateChange();
+        }
     }
 
     window.resetQuantities = function() {
@@ -83,8 +93,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         renderProducts(document.querySelector('.tab-content:not([style*="display: none"])').id);
+        document.getElementById('payment-input').value="";
         updateTotal();
+        calculateChange();
     }
+
+    window.calculateChange = function() {
+        const totalAmountElement = document.getElementById('total-amount');
+        const totalAmount = totalAmountElement ? parseFloat(totalAmountElement.textContent.replace('€', '')) : 0;
+        const paymentInput = document.getElementById('payment-input').value.replace(',', '.');
+        const paymentAmount = parseFloat(paymentInput) || 0;
+        const change = paymentAmount - totalAmount;
+        document.getElementById('change-amount').textContent = change.toFixed(2) + '€';
+    }
+
+    document.getElementById('payment-input').addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9.,]/g, '');
+    });
 
     openTab('comida');
 });
